@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tela inicial COLIH</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection">
+  </head>
+  <body>
+    <div class="row">
+        <div class="col s12 l4">
+            <div class="card">
+                <div class="card-header grey">
+                    <i class="material-icons valign-bottom">insert_chart</i> Contador de casos
+                </div>
+                <div class="card-content">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card">
+                <div class="card-header grey">
+                    <i class="material-icons valign-bottom">insert_chart</i> Casos por SUB (Em Aberto)
+                </div>
+                <div class="card-content">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card">
+                <div class="card-header grey">
+                    <i class="material-icons valign-bottom">insert_chart</i> Casos por Membro
+                </div>
+                <div class="card-content">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <script src="assets/Chart.bundle.min.js"></script>
+      <script src="assets/jquery/jquery-3.2.1.min.js"></script>
+      <!-- Plugins JS import -->
+      <script src="assets/materialize/js/materialize.min.js"></script>
+      <script type="text/javascript">
+      var ctx = document.getElementById('lineChart').getContext('2d');
+      var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+          labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"],
+          datasets: [{
+              label: "Casos em aberto",
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [0, 5, 10, 15, 20, 21, 30, 37 , 40 , 59 , 70 , 100],
+          }]
+      },
+
+      // Configuration options go here
+      options: {}
+      });
+
+      var ctx = document.getElementById('doughnutChart').getContext('2d');
+      var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'doughnut',
+
+      // The data for our dataset
+      data: {
+          labels: ['Orto', 'Cardio', 'Onco','Neo','Litoral','Gastro'],
+
+          datasets: [{
+              backgroundColor: ['#9ccc65', '#ef5350', '#bdbdbd','#4e3ed8','#d8d13e','#d83ea2'],
+              data: [27, 13, 4,12,7,1],
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+          cutoutPercentage: 60
+      }
+      });
+
+      var ctx = document.getElementById('barChart').getContext('2d');
+      var myBarChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ["Marcelo", "Michel", "Eduardo", "Rafael", "Ludovico", "Paulo"],
+              datasets: [{
+                  label: 'Número de casos',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255,99,132,1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      });
+      </script>
+  </body>
+</html>
